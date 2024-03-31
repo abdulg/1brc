@@ -99,5 +99,9 @@ func (r *Reading) add(value float64) {
 }
 
 func (r *Reading) result() string {
-	return fmt.Sprintf("%.1f/%.1f/%.1f", r.min, r.total/float64(r.count), r.max)
+	return fmt.Sprintf("%.1f/%.1f/%.1f", r.min, r.mean(), r.max)
+}
+
+func (r *Reading) mean() float64 {
+	return math.Round((r.total/(float64(r.count)))*10) / 10
 }
